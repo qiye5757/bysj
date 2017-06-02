@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+      <head>
+	      <meta chreset="utf-8"/>
+		  <title>注册页面</title>
+		  <link href="/bysj__PUBLIC__/css/register.css" type="text/css" rel="stylesheet">
+	  </head>
+	  <body>
+	  		<form>
+		       <table>
+			        <tr>
+					    <th>用户名:</th>
+					    <td>
+						<input type="text" name="username"  value="" placeholder="请输入用户名" class="txt" attr="true">
+					    </td>
+					</tr>
+					<tr>
+		                <th>密码:</th>
+			            <td>
+			                <input type="password" name="passwd" placeholder="请输入密码" value="" class="txt">
+			            </td>
+		            </tr>
+					 <tr>
+		                  <th>电话号码</th>
+		           	      <td>
+			              <input type="text" name="telephone" placeholder="请输入手机号" class="txt"> 
+			              </td>
+		             </tr>
+					 <tr>
+					     <th>验证码</th>
+						 <td colspan="2">
+						 <input type="text" name="code" size="4" class="code"> 
+						 <img src="/bysj/index/login/vcode" onclick="this.src='/bysj/index/login/vcode?'+Math.random()" width="80px" height="30px" />
+						 </td>
+					 </tr>
+					 <tr>
+			       <td align="center" colspan="2">
+			       <input type="button" name="dosubmit" value="注册" class="submit">
+			       </td>
+		           </tr>
+		        </table>
+		      </form>
+		      <script src="https://code.jquery.com/jquery.js"></script>
+		      <script>
+		      	$(document).ready(function(){
+		      		$('[name = "username"]').blur(function(){
+		      			var username = $('[name = "username"]').val();
+		      			if(username != ''){
+		      				$.ajax({
+				  				url:"/bysj/index/login/isHasUser",
+				  				type:"POST",
+				  				data:({
+				  					'username':username
+				  				}),
+				  				success:function(res){
+				  					alert(1);
+				  				}
+				  			})
+		      			}
+		      		})
+		      		$('.submit').click(function(){
+		      			var username = $('[name="username"]').val();
+		      			var password = $('[name="passwd"]').val();
+		      			var telephone = $('[name="telephone"]').val();
+		      			var code = $('.code').val();
+		      			//alert(telephone);
+		      			if(username == ''){
+		      				alert('用户名不能为空');
+		      				return false;
+		      			}
+		      			//alert($('[name = "username"]').attr('attr'));
+		      			if($('[name = "username"]').attr('attr') == 'true'){
+		      				alert('用户名已存在');
+		      				return false;
+		      			}
+		      			if(password == ''){
+		      				alert('密码不能为空');
+		      				return false;
+		      			}
+		      			if(telephone == ''){
+		      				alert('手机号不能为空');
+		      				return false;
+		      			}
+		      			var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/; 
+		      			if(!myreg.test(telephone)) 
+		      		    {
+		      		        alert('请输入合法的手机号码！');
+		      		        return false;
+		      		    }
+		      			if(code == ''){
+		      				alert("验证码不能为空");
+		      				return false;
+		      			}
+		      			$.ajax({
+			  				url:"/bysj/index/login/doRegister",
+			  				type:"POST",
+			  				data:({
+			  					'username':username,
+			  					"password":password,
+			  					'telephone':telephone,
+			  					'code':code
+			  				}),
+			  				success:function(res){
+			  					alert(JSON.stringify(res));
+			  				}
+			  			})
+		      		})
+		      	});
+		      	$(function() {
+			      	   if (navigator.userAgent.toLowerCase().indexOf("chrome") >= 0) {
+			      	      $(window).load(function(){
+			      	         $('input:not(input[type=submit])').each(function(){
+			      	         var outHtml = this.outerHTML;
+			      	         $(this).append(outHtml);
+			      	         });
+			      	      });
+			      	   }
+			      	});
+		      </script>
+</body>
+</html>

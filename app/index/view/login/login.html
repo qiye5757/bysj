@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+      <head>
+	      <meta chreset="utf-8"/>
+		  <title>登陆页面</title>
+	  <style type="text/css">
+		 .login{
+			width:30vw;
+		 	height:40vh;
+		 	margin:30vh 35vw;
+		 	background-color:#ccc;
+		 	text-align:center;
+		 	color:#6d4f4f;
+		 }
+		 #name,#passwd{
+			width:20vw;
+		 	height:5vh;
+		 	margin:10px 0;	 	
+		 }
+		 #code{
+			width:10vw;
+		 	height:5vh;
+		 	margin:0;
+		 	border:0;
+		 	padding:0;
+		 }
+		 img{
+			width:10vw;
+		 	height:5vh;
+		 	margin:0 0 -10px 0;
+		 }
+		 #register,#login{
+			margin:10px;
+		 	width:60px;
+		 	height:36px;
+		 }
+      </style>
+	  </head>
+	  <body>
+	  		<div class="login">
+	  		    <div>登陆系统</div>
+	  			<input type="text" id="name" placeholder="请输入您的用户名">
+	  			<input type="password" id="passwd" placeholder="请输入您的密码">
+	  			<input type="text" id="code">
+	  			 <img src="/bysj/index/login/vcode" onclick="this.src='/bysj/index/login/vcode?'+Math.random()" width="80px" height="30px" />
+	  			<br>
+	  			<input type="button" id="register" value="注册">
+	  			<input type="button" id="login" value="登陆">	  			
+	  		</div>
+		      <script src="https://code.jquery.com/jquery.js"></script>
+		      <script>
+		      	$(document).ready(function(){
+		      		$('#login').click(function(){
+		      			var username = $('#name').val();
+		      			var password = $('#passwd').val();
+		      			var code = $('#code').val();
+		      			//alert(telephone);
+		      			if(username == ''){
+		      				alert('用户名不能为空');
+		      				return false;
+		      			}
+		      			if(password == ''){
+		      				alert('密码不能为空');
+		      				return false;
+		      			}
+		      			if(code == '' || code.length != 4){
+		      				alert('验证码格式不对');
+		      				return false;
+		      			}
+		      			$.ajax({
+			  				url:"/bysj/index/login/doLogin",
+			  				type:"post",
+			  				data:({
+			  					'username':username,
+			  					"password":password,
+			  					'code':code
+			  				}),
+			  				success:function(res){
+			  					alert(JSON.stringify(res));
+			  					//window.location.href = "/bysj/index/index2/index";
+			  				}
+			  			})
+		      		})
+		      	});
+		      	$(function() {
+		      	   if (navigator.userAgent.toLowerCase().indexOf("chrome") >= 0) {
+		      	      $(window).load(function(){
+		      	         $('input:not(input[type=submit])').each(function(){
+		      	         var outHtml = this.outerHTML;
+		      	         $(this).append(outHtml);
+		      	         });
+		      	      });
+		      	   }
+		      	});
+		      </script>
+</body>
+</html>

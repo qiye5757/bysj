@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>欢迎来到SQL注入系统</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!-- 引入 Bootstrap -->
+      <link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"> 
+   <style type="text/css">
+	html,body{
+		margin:0;
+		padding:0;
+		min-width:1120px;
+	}
+	h3{
+		padding:0;
+		margin:0;
+	}
+	.top{
+		width:100%;
+		height:40px;
+	}
+	.top_left{
+		width:15%;
+		text-align:center;
+		background-color:#7281ef;
+		height:50px;
+		line-height:50px;
+		float:left;
+	}
+	.top_left>span>a{
+		font-size:20px;
+		color:#fff;
+		text-decoration: none;
+	}
+	.top_right{
+		float:left;
+		width:85%;
+		height:50px;
+		background-color:#88b0ea;
+		text-align:right;
+		padding:0 80px 0 0;
+		line-height:50px;
+		color:#fff;
+	}
+	.top_right a{
+		color:#fff;
+		text-decoration: none;
+	}
+	.main_left{
+		width:15%;
+		background-color:#9adae0;
+		text-align:center;
+		color:#fff;
+		height:90vh;
+		float:left;
+	}
+	.main_left .left_top{
+		padding:20px 0;
+		font-size:14px;
+	}
+	.main_left .left_top .top_two{
+		margin:0 0 0 10px;
+	}
+	.main_left .left_botton{
+		width:100%;
+		height:50px;
+		line-height:50px;
+		border:1px solid #ccc;
+	}
+	.do_get{
+		background-color:#51d0b8;
+	}
+	.main_right{
+		height:90vh;
+		float:left;
+		width:85%;
+	}
+	.main_right .main_default img{
+		width:100%;
+		height:90vh;
+		display:none;
+	}
+	.main_one{
+		display:none;
+	}
+   </style>
+   </head>
+   <body>
+   	  <!-- 头部 -->
+   	  <div class="top">
+	  	<div class="top_left">
+	  		<span><a href="javascript:void(0)">七夜SQL注入系统</a></span>
+	  	</div>
+	  	<div class="top_right">	  		
+	  		{if condition="$userId neq null"}
+	  		<span>欢迎您：{$username}</span>
+	  		<span id="layout" style="color:#ccc">退出登陆</span>
+	  		{else /}	
+	  		<span><a href="/bysj/index/login/login">登陆</a></span>
+	  		<span><a href="/bysj/index/login/register">注册</a></span>
+	  		<span class="glyphicon glyphicon-user"></span>
+	  		<span>未登录</span>  			
+	  		{/if}	  		
+	  	</div>	   	  
+   	  </div>
+   	  
+   	  <!-- 主要内容 -->
+   	  <div class="main">
+   	  	 <div class="main_left">
+   	  	 	<h3 class="left_top">
+   	  	 		<span class="glyphicon glyphicon-heart"></span>
+   	  	 		<span class="top_two">欢迎您的到来</span>
+   	  	 	</h3>
+   	  	 	<div class="left_botton" attr="SQL1">SQL注入学习</div>
+   	  	 	<div class="left_botton" attr="SQL2">网站漏洞扫描</div>
+   	  	 	<div class="left_botton" attr="SQL3">网站后台扫描</div>
+   	  	 	<div class="left_botton" attr="SQL4">SQL手动注入</div>
+   	  	 	<div class="left_botton" attr="SQL5">SQL自动注入</div>
+   	  	 	<div class="left_botton" attr="SQL6">SQL盲注</div>
+   	  	 	<div class="left_botton" attr="SQL7">系统信息</div>   	  	 	
+   	  	 </div>
+   	  	 
+   	  	 <div class="main_right">
+   	  	 	<!-- 默认页面 -->  
+   	  	 	<div class="m_right main_default" style="display:none">
+   	  	 		<img src="/bysj__PUBLIC__/images/temp_one.jpg" style="display:block" attr="show">
+   	  	 		<img src="/bysj__PUBLIC__/images/temp_two.jpg">
+   	  	 		<img src="/bysj__PUBLIC__/images/temp_three.jpg">
+   	  	 		<img src="/bysj__PUBLIC__/images/temp_four.jpg">
+   	  	 	</div>	
+   	  	 	<!-- 学习模块 -->  	
+   	  	 	<div class="m_right main_one" id="SQL1_show">
+   	  	 		111
+   	  	 	</div> 	
+   	  	 	<!--网站漏洞扫描模块 -->  	
+   	  	 	<div class="m_right main_one" id="SQL2_show" style="display:block">
+   	  	 		222
+   	  	 	</div> 	
+   	  	 	<!-- 学习模块 -->  	
+   	  	 	<div class="m_right main_one" id="SQL3_show">
+   	  	 		333
+   	  	 	</div> 	
+   	  	 	<!-- 学习模块 -->  	
+   	  	 	<div class="m_right main_one" id="SQL4_show">
+   	  	 		444
+   	  	 	</div> 	
+   	  	 	<!-- 学习模块 -->  	
+   	  	 	<div class="m_right main_one" id="SQL5_show">
+   	  	 		555
+   	  	 	</div> 	
+   	  	 	<!-- 学习模块 -->  	
+   	  	 	<div class="m_right main_one" id="SQL6_show">
+   	  	 		666
+   	  	 	</div> 	
+   	  	 	<!-- 学习模块 -->  	
+   	  	 	<div class="m_right main_one" id="SQL7_show">
+   	  	 		777
+   	  	 	</div> 	
+   	  	 </div>
+   	  </div>
+      <script src="https://code.jquery.com/jquery.js"></script>
+      <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	  <script>
+	  	$(document).ready(function(){
+	  		//左侧选中效果
+	  		$('.left_botton').click(function(){
+	  			//选中效果
+	  			$('.left_botton').removeClass('do_get');
+	  			$(this).addClass('do_get');
+	  			$('.m_right').hide();
+	  			$('#' + $(this).attr('attr') + '_show').show();
+	  		});
+	  		//退出登陆
+	  		$("#layout").click(function(){
+	  			$.ajax({
+	  				url:"/bysj/index/index2/layout",
+	  				type:"POST",
+	  				success:function(){
+	  					window.location.reload();
+	  				}
+	  			})
+	  		});
+	  		//首页轮播
+	  		setInterval('img_display()',3000);
+	  	});
+	  	var display_time = 1;
+	  	function img_display(){
+	  		//alert(display_time);
+	  		if(display_time <4){
+	  			$('.main_default>img[attr = "show"]').css('display','none').attr('attr','').next('img').css('display','block').attr('attr','show');	  			
+	  			display_time++;
+	  		}else{	  			
+	  			$('.main_default>img:first-child').css('display','block').attr('attr','show');
+	  			display_time = 1;
+	  		}	  		
+	  	}
+	  </script>
+   </body>
+</html>
