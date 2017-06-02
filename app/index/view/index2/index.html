@@ -83,6 +83,9 @@
 	.main_one{
 		display:none;
 	}
+	.comn_left{
+		width:20vw;
+	}
    </style>
    </head>
    <body>
@@ -123,38 +126,167 @@
    	  	 <div class="main_right">
    	  	 	<!-- 默认页面 -->  
    	  	 	<div class="m_right main_default" style="display:none">
-   	  	 		<img src="/bysj__PUBLIC__/images/temp_one.jpg" style="display:block" attr="show">
+   	  	 	{if condition="$userId neq null"}
+					
+	  		{else /}	
+	  			<img src="/bysj__PUBLIC__/images/temp_one.jpg" style="display:block" attr="show">
    	  	 		<img src="/bysj__PUBLIC__/images/temp_two.jpg">
    	  	 		<img src="/bysj__PUBLIC__/images/temp_three.jpg">
-   	  	 		<img src="/bysj__PUBLIC__/images/temp_four.jpg">
+   	  	 		<img src="/bysj__PUBLIC__/images/temp_four.jpg"> 			
+	  		{/if}	  	  	  	 		
    	  	 	</div>	
    	  	 	<!-- 学习模块 -->  	
    	  	 	<div class="m_right main_one" id="SQL1_show">
-   	  	 		111
+   	  	 		<div class="comn_left" style="text-align:center;float:left">
+   	  	 			<div style="margin:0 20px 0 0">
+	   	  	 			<h2>aaa</h2>
+	   	  	 			<h3>aaa</h3>
+   	  	 			</div>
+   	  	 		</div>
+   	  	 		<div style="wid" style="width:50vw;margin:20px 0 0 2vw;float:left">   
+   	  	 			<div>
+   	  	 				111
+   	  	 			</div> 		
+   	  	 		</div>   	  	 		
    	  	 	</div> 	
    	  	 	<!--网站漏洞扫描模块 -->  	
    	  	 	<div class="m_right main_one" id="SQL2_show" style="display:block">
-   	  	 		222
+   	  	 		 <div class="input-group">
+            		<input type="text" class="form-control">
+           			<span class="input-group-addon">进行扫描</span>
+       			 </div>
+       			 <table class="table table-bordered">
+				  <caption>边框表格布局</caption>
+				  <thead>
+				    <tr>
+				      <th>名称</th>
+				      <th>城市</th>
+				      <th>邮编</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <tr>
+				      <td>Tanmay</td>
+				      <td>Bangalore</td>
+				      <td>560001</td>
+				    </tr>
+				    <tr>
+				      <td>Sachin</td>
+				      <td>Mumbai</td>
+				      <td>400003</td>
+				    </tr>
+				    <tr>
+				      <td>Uma</td>
+				      <td>Pune</td>
+				      <td>411027</td>
+				    </tr>
+				  </tbody>
+				</table>
    	  	 	</div> 	
-   	  	 	<!-- 学习模块 -->  	
+   	  	 	<!-- 后台扫描模块 --> 	
    	  	 	<div class="m_right main_one" id="SQL3_show">
-   	  	 		333
+   	  	 		<div class="input-group">
+            		<input type="text" class="form-control">
+           			<span class="input-group-addon">进行扫描</span>
+       			</div>
    	  	 	</div> 	
-   	  	 	<!-- 学习模块 -->  	
+   	  	 	<!-- SQL手动注入模块 -->  	
    	  	 	<div class="m_right main_one" id="SQL4_show">
-   	  	 		444
+   	  	 		<table class="table table-bordered">
+				  <caption>边框表格布局</caption>
+				  <thead>
+				    <tr>
+				      <th>名称</th>
+				      <th>城市</th>
+				      <th>邮编</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <tr>
+				      <td>Tanmay</td>
+				      <td>Bangalore</td>
+				      <td>560001</td>
+				    </tr>
+				    <tr>
+				      <td>Sachin</td>
+				      <td>Mumbai</td>
+				      <td>400003</td>
+				    </tr>
+				    <tr>
+				      <td>Uma</td>
+				      <td>Pune</td>
+				      <td>411027</td>
+				    </tr>
+				  </tbody>
+				</table>
    	  	 	</div> 	
-   	  	 	<!-- 学习模块 -->  	
+   	  	 	<!-- SQL自动注入模块 -->  	
    	  	 	<div class="m_right main_one" id="SQL5_show">
-   	  	 		555
+   	  	 		<table class="table table-bordered">
+				  <caption>边框表格布局</caption>
+				  <thead>
+				    <tr>
+				      <th>名称</th>
+				      <th>城市</th>
+				      <th>邮编</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <tr>
+				      <td>Tanmay</td>
+				      <td>Bangalore</td>
+				      <td>560001</td>
+				    </tr>
+				    <tr>
+				      <td>Sachin</td>
+				      <td>Mumbai</td>
+				      <td>400003</td>
+				    </tr>
+				    <tr>
+				      <td>Uma</td>
+				      <td>Pune</td>
+				      <td>411027</td>
+				    </tr>
+				  </tbody>
+				</table>
    	  	 	</div> 	
-   	  	 	<!-- 学习模块 -->  	
+   	  	 	<!-- SQL盲注模块 -->   	
    	  	 	<div class="m_right main_one" id="SQL6_show">
-   	  	 		666
+   	  	 		<table class="table table-bordered">
+				  <caption>边框表格布局</caption>
+				  <thead>
+				    <tr>
+				      <th>名称</th>
+				      <th>城市</th>
+				      <th>邮编</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <tr>
+				      <td>Tanmay</td>
+				      <td>Bangalore</td>
+				      <td>560001</td>
+				    </tr>
+				    <tr>
+				      <td>Sachin</td>
+				      <td>Mumbai</td>
+				      <td>400003</td>
+				    </tr>
+				    <tr>
+				      <td>Uma</td>
+				      <td>Pune</td>
+				      <td>411027</td>
+				    </tr>
+				  </tbody>
+				</table>
    	  	 	</div> 	
-   	  	 	<!-- 学习模块 -->  	
+   	  	 	<!-- 系统信息模块 -->	
    	  	 	<div class="m_right main_one" id="SQL7_show">
-   	  	 		777
+   	  	 		<h2  style="text-align:center;">SQL injection system design</h2>
+				<p>SQL injection name to know lots of people, but few really know people, people just know something about SQL injection of probably the most obvious cognition, cognition is also the most simple.On the other hand, because the employees don't attach importance to and do not understand, SQL injection is still one of the largest invasion threat website way.Based on the present situation, a website based on PHP + redis queue SQL injection system arises at the historic moment.</p>
+				<p>This system is a secondary attack system and learning system, based on BS architecture, the back-end using python injection tests, PHP test injection, according to the results and the front desk for Taiwan before and after using the bootstrap + AJAX interactions, using Apache server as a web server, is dedicated to helping people to understand, learn and use the SQL injection.</p>
+				<p>This article first introduces the background of the construction of the system, as well as the development of the technology used by the system, and then to the system requirements analysis and general design, system and database design.Finally listed the system implementation of the code, and test results, along with the summary of the development of the system.</p>
+				<p>SQL injection system based on the HTML page provides people with a platform of study and work, through the system can learn the knowledge of SQL injection, site information, scan the website loophole and SQL injection attacks.At the same time, because of their learning SQL injection attacks, can very good protection on their website.</p>
    	  	 	</div> 	
    	  	 </div>
    	  </div>

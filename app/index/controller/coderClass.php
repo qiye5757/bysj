@@ -10,7 +10,7 @@ class coderClass extends Controller{
 		 private $img;      //图像的资源
 
 		//构造方法
-	     function __construct($width,$height,$num){
+	     public function __construct($width,$height,$num){
 		    $this->width = $width;
 			$this->height = $height;
 			$this->num = $num;
@@ -18,12 +18,12 @@ class coderClass extends Controller{
 		 }
 
 		 //获取字符的验证码
-		 function getcode(){
+		 public function getcode(){
 		      return $this->code;
 		 }
 
 		 //输出图像
-		 function outimg(){
+		 public function outimg(){
 		         //创建背景(颜色，大小，边框)
                  $this->createback();
 				 //画字(大小，字体颜色)
@@ -105,7 +105,7 @@ class coderClass extends Controller{
          
 
 		 //析构方法  用于自动销毁资源
-		 function __destruct(){
+		 public function __destruct(){
 		       imagedestroy($this->img);
 		 }
 }
