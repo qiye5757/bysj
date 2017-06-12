@@ -22,18 +22,21 @@ class Login extends Controller{
      */
     public function doLogin(){
         $username = $_POST['username'];
-        $passwd = $_POST['passwd'];
-        $coder = $_POST['coder'];
+        $passwd = $_POST['password'];
+        $coder = $_POST['code'];
         $Dcoder = Session::get('coder');
-        if($coder == $Dcoder){
-            $res = db('user')
+        if(strcasecmp($coder,$Dcoder) == 0){
+            $res = db('system_user')
                     ->where('username','eq',$username)
                     ->where('passwd','eq',$passwd)
                     ->select();
-            if($res == null){
+            if($res != null){
                 $data = array(
                     'res' => true
-                );               
+                ); 
+                Session::set('userId',$res[0]['id']);
+                Session::set('username',$res[0]['username']);
+                Session::set('is_admin',$res[0]['is_admin']);
             }else{
                 $data = array(
                     'res' => false,
@@ -66,16 +69,21 @@ class Login extends Controller{
        $username = $_POST['username'];
        $password = $_POST['password'];
        $telephone = $_POST['telephone'];
-       $register_time = date('y-m-d',time());
-       $coder = session::get('code');
-       $data = array(
-           'username' => $username,
-           'password' => $password,
-           'tel' => $telephone,
-           'register_time' => $register_time
-       );
-       $res = db('system_user')->insert($data);
-       return res;
+       $register_time = date('y-m-d h:i:s',time());
+       $coder_post = $_POST['coder'];
+       $coder = Session::get('coder');
+       if(strcasecmp($coder,$coder_post)==0){
+           $data = array(
+               'username' => $username,
+               'passwd' => $password,
+               'tel' => $telephone,
+               'register_time' => $register_time
+           );
+           $res = db('system_user')->insert($data);
+       }else{
+           $res = -1;
+       }       
+       return $res;
     }
     /**
      * 检测用户名是否存在
@@ -93,9 +101,11 @@ class Login extends Controller{
                 }
             } 
         }else if (count($user_list) == 1){
-            if($user == $user_list['username']){
+            if($user == $user_list[0]['username']){
                 $is_has = true;
             }
+        }else{
+            
         }        
         return $is_has;
     }

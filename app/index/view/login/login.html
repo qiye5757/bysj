@@ -51,6 +51,9 @@
 		      <script src="https://code.jquery.com/jquery.js"></script>
 		      <script>
 		      	$(document).ready(function(){
+		      		$('#register').click(function(){
+		      			window.location.href="/bysj/index/login/register";
+		      		})
 		      		$('#login').click(function(){
 		      			var username = $('#name').val();
 		      			var password = $('#passwd').val();
@@ -68,7 +71,6 @@
 		      				alert('验证码不能为空');
 		      				return false;
 		      			}
-		      			alert(1);
 		      			$.ajax({
 			  				url:"/bysj/index/login/doLogin",
 			  				type:"POST",
@@ -79,7 +81,11 @@
 			  				}),
 			  				success:function(res){
 			  					//alert(JSON.stringify(res));
-			  					window.location.href = "/bysj/index/index2/index";
+			  					if(res['res'] == true){
+			  						window.location.href = "/bysj/index/index2/index";
+			  					}else{
+			  						alert(res['error']);
+			  					}			  					
 			  				}
 			  			});
 		      		})

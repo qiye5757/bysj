@@ -86,6 +86,26 @@
 	.comn_left{
 		width:20vw;
 	}
+	/*基础页面显示模块*/
+	.default_control{
+		width:60vw;
+		margin:80px 30vw 0 5vw;
+		padding:20px;
+		text-align:center;
+	}
+	.default_control .control_one{
+		width:25vw;
+		float:left;
+		margin:20px;
+		height:130px;
+	}
+	.default_control .bodt_one{
+		font-size:25px;
+	}
+	.have_color{
+		background-color:green;
+		color:#fff;
+	}
 	/*漏洞扫描模块*/
 	#SQL2_show .input-group{
 		width:45vw;
@@ -93,8 +113,52 @@
 	}
 	#show_SQL2_res{
 		width:81vw;
-		margin:0 2vw;
-		
+		margin:0 2vw;		
+	}	
+	.SQL2_icon{
+		width:30px;
+		float:left;
+		display:block;
+		color:blue;
+		margin:0 5px
+	}
+	/*后台扫描模块*/
+	#SQL3_show>.input-group{
+		width:45vw;
+		margin:20px 20vw;
+	}	
+	#SQL3_show>.row{
+		margin:0 0 0 5vw;
+	}
+	#SQL3_show>.row>.input-group{
+		width:23vw;
+		float:left;
+		margin:10px 20px;
+	}
+	.SQL3_show_log{
+		width:75vw;
+		height:200px;
+		margin:0 5vw;
+		background-color:#394b7b;
+		border:1px solid #000;
+		color:#fff;
+		overflow-y:scroll;
+	}
+	.SQL3_show_log .log_title{
+		float:left;
+		text-align:center;
+	}
+	.SQL3_show_log .log_content{
+		float:left;
+		text-align:center;
+		margin:10px 5px;
+	}
+	/*系统信息显示*/
+	#SQL7_show{
+		width:50vw;
+		margin:0 20vw 0 15vw;
+		text-indent:20px;
+		font-size:17px;
 	}
    </style>
    </head>
@@ -124,20 +188,63 @@
    	  	 		<span class="glyphicon glyphicon-heart"></span>
    	  	 		<span class="top_two">欢迎您的到来</span>
    	  	 	</h3>
-   	  	 	<div class="left_botton" attr="SQL1">SQL注入学习</div>
-   	  	 	<div class="left_botton" attr="SQL2">网站漏洞扫描</div>
-   	  	 	<div class="left_botton" attr="SQL3">网站后台扫描</div>
-   	  	 	<div class="left_botton" attr="SQL4">SQL手动注入</div>
-   	  	 	<div class="left_botton" attr="SQL5">SQL自动注入</div>
-   	  	 	<div class="left_botton" attr="SQL6">SQL盲注</div>
-   	  	 	<div class="left_botton" attr="SQL7">系统信息</div>   	  	 	
+   	  	 	<div class="left_botton SQL1" attr="SQL1">SQL注入学习</div>
+   	  	 	<div class="left_botton SQL2" attr="SQL2">网站漏洞扫描</div>
+   	  	 	<div class="left_botton SQL3" attr="SQL3">网站后台扫描</div>
+   	  	 	<div class="left_botton SQL4" attr="SQL4">SQL手动注入</div>
+   	  	 	<div class="left_botton SQL5" attr="SQL5">SQL自动注入</div>
+   	  	 	<div class="left_botton SQL6" attr="SQL6">SQL盲注</div>
+   	  	 	<div class="left_botton SQL7" attr="SQL7">系统信息</div>  
+   	  	 	 {if condition="$is_admin eq 1"}
+		  		<div class="left_botton SQL8" attr="SQL8">已注册用户信息</div>  		
+	  		{/if}	  		  	 	
    	  	 </div>
-   	  	 
    	  	 <div class="main_right">
    	  	 	<!-- 默认页面 -->  
-   	  	 	<div class="m_right main_default" style="display:none">
+   	  	 	<div class="m_right main_default" id="SQL0_show" style="display:none">
    	  	 	{if condition="$userId neq null"}
-					
+   	  	 	  <div class="default_control" >
+				<div class="panel panel-default control_one have_color" attr="SQL2">
+				    <div class="panel-heading">
+				        <h3 class="panel-title">
+				                              已扫描网站
+				        </h3>
+				    </div>
+				    <div class="panel-body bodt_one">
+				         5
+				    </div>
+				</div>
+				<div class="panel panel-default control_one" attr="SQL3">
+				    <div class="panel-heading">
+				        <h3 class="panel-title">
+				          	已找寻后台
+				        </h3>
+				    </div>
+				    <div class="panel-body bodt_one">
+				       	2
+				    </div>
+				</div>
+				<div class="panel panel-default control_one" attr="SQL4">
+				    <div class="panel-heading">
+				        <h3 class="panel-title">
+				           	已爬取链接
+				        </h3>
+				    </div>
+				    <div class="panel-body bodt_one">
+				        126
+				    </div>
+				</div>
+				<div class="panel panel-default control_one" attr="SQL6">
+				    <div class="panel-heading">
+				        <h3 class="panel-title">
+				           	SQL盲注次数
+				        </h3>
+				    </div>
+				    <div class="panel-body bodt_one">
+				        0
+				    </div>
+				</div>
+				</div>
 	  		{else /}	
 	  			<img src="/bysj__PUBLIC__/images/temp_one.jpg" style="display:block" attr="show">
    	  	 		<img src="/bysj__PUBLIC__/images/temp_two.jpg">
@@ -146,14 +253,14 @@
 	  		{/if}	  	  	  	 		
    	  	 	</div>	
    	  	 	<!-- 学习模块 -->  	
-   	  	 	<div class="m_right main_one" id="SQL1_show">
+   	  	 	<div class="m_right main_one" id="SQL1_show" style="display:none;">
    	  	 		<div class="comn_left" style="text-align:center;float:left">
    	  	 			<div style="margin:0 20px 0 0">
 	   	  	 			<h2>aaa</h2>
 	   	  	 			<h3>aaa</h3>
    	  	 			</div>
    	  	 		</div>
-   	  	 		<div style="wid" style="width:50vw;margin:20px 0 0 2vw;float:left">   
+   	  	 		<div class="wid" style="width:50vw;margin:20px 0 0 2vw;float:left">   
    	  	 			<div>
    	  	 				111
    	  	 			</div> 		
@@ -162,26 +269,45 @@
    	  	 	<!--网站漏洞扫描模块 -->  	
    	  	 	<div class="m_right main_one" id="SQL2_show" style="display:block">
    	  	 		 <div class="input-group">
-            		<input type="text" class="form-control">
-           			<span class="input-group-addon">进行扫描</span>
+            		<input type="text" placeholder="请输入要爬取链接的域名" class="form-control" id="get_base_url">
+           			<span class="input-group-addon" id="do_get_base_url">进行扫描</span>
        			 </div>
        			 <table class="table table-bordered" id="show_SQL2_res">
+       			  <caption style="text-align:center;font-size:20px;font-weight:blod;">已爬取网站记录表</caption>
 				  <thead>
 				    <tr>
 				      <th>主机名(host)</th>
 				      <th>url地址</th>
 				      <th>cookie</th>
 				      <th>User-agent</th>
+				      <th>状态码</th>
 				      <th>操作</th>
 				    </tr>
 				  </thead>
-				  <tbody>
+				  <tbody class="SQL_two_show">
 				    <tr>
-				      <td>Tanmay</td>
-				      <td>Bangalore</td>
+				      <td>http://localhost</td>
+				      <td>http://localhost/bysj/index/index</td>
 				      <td>560001</td>
 				      <td>Tanmay</td>
-				      <td>Bangalore</td>
+				      <td>200</td>
+				      <td>
+						 手动注入&nbsp;
+						 自动注入&nbsp;
+						 盲注
+					  </td>
+				    </tr>
+				     <tr>
+				      <td>http://www.baidu.com</td>
+				      <td>http://www.baidu.com</td>
+				      <td>560001</td>
+				      <td>Tanmay</td>
+				      <td>200</td>
+				      <td>
+						 手动注入&nbsp;
+						 自动注入&nbsp;
+						 盲注
+					  </td>
 				    </tr>
 				  </tbody>
 				</table>
@@ -189,69 +315,141 @@
    	  	 	<!-- 后台扫描模块 --> 	
    	  	 	<div class="m_right main_one" id="SQL3_show">
    	  	 		<div class="input-group">
-            		<input type="text" class="form-control">
-           			<span class="input-group-addon">进行扫描</span>
+            		<input type="text" class="form-control" id="get_admin_url">
+           			<span class="input-group-addon" id="do_get_admin_url">开始扫描</span>
        			</div>
+       			<div class="row">
+	       			<div class="input-group">
+			            <span class="input-group-addon">正确的状态码</span>
+			            <input type="text" class="form-control" placeholder="200,500,301,302,403,401" id="admin_success_code">
+			        </div>
+			        <div class="input-group">
+			            <span class="input-group-addon">错误的状态码</span>
+			            <input type="text" class="form-control" placeholder="400,404" id="admin_error_code">
+			        </div>
+			        <div class="input-group">
+			            <span class="input-group-addon">服务器语言</span>
+			            <input type="text" class="form-control" placeholder="asp,php" id="admin_language">
+			        </div>
+			        <div class="input-group">
+			            <span class="input-group-addon">测试个数</span>
+			            <input type="text" class="form-control" placeholder="20" id="admin_ceshi_number">
+			        </div>
+			        <div class="input-group">
+			            <span class="input-group-addon">time out</span>
+			            <input type="text" class="form-control" placeholder="10" id="admin_time_out">
+			        </div>
+			        <div class="input-group">
+			            <span class="input-group-addon">线程</span>
+			            <input type="text" class="form-control" placeholder="5" id="admin_threads_number">
+			        </div>
+			         <table class="table table-bordered" id="show_SQL3_res" style="width:75vw">
+	       			  <caption style="text-align:center;font-size:20px;font-weight:bold;">已爬取网站记录表</caption>
+					  <thead>
+					    <tr>
+					      <th>主机名(host)</th>
+					      <th>url</th>
+					      <th>service</th>
+					      <th>符合要求的链接</th>
+					      <th>不符合要求</th>
+					      <th>其他链接</th>
+					      <th>操作</th>
+					    </tr>
+					  </thead>
+					  <tbody class="SQL_three_show" id="get_admin_has_url">
+					  </tbody>
+					</table>
+				</div>
+				<div class="SQL3_show_log" id="log_SQL3_show" style="display:none">
+					<h3>
+						<div style="width:50vw;" class="log_title">网址</div>
+						<div style="width:20vw;" class="log_title">状态码</div>
+					</h3>
+					<div id="get_admin_has_log">
+					</div>
+				</div>
    	  	 	</div> 	
    	  	 	<!-- SQL手动注入模块 -->  	
-   	  	 	<div class="m_right main_one" id="SQL4_show">
-   	  	 		<table class="table table-bordered">
-				  <caption>边框表格布局</caption>
-				  <thead>
-				    <tr>
-				      <th>名称</th>
-				      <th>城市</th>
-				      <th>邮编</th>
-				    </tr>
-				  </thead>
-				  <tbody>
-				    <tr>
-				      <td>Tanmay</td>
-				      <td>Bangalore</td>
-				      <td>560001</td>
-				    </tr>
-				    <tr>
-				      <td>Sachin</td>
-				      <td>Mumbai</td>
-				      <td>400003</td>
-				    </tr>
-				    <tr>
-				      <td>Uma</td>
-				      <td>Pune</td>
-				      <td>411027</td>
-				    </tr>
-				  </tbody>
-				</table>
+   	  	 	<div class="m_right main_one" id="SQL4_show" style="display:none">
+   	  	 		<div style="margin:10px 5vw">
+   	  	 			请选择已爬取的网站
+	   	  	 		<select style="width:20vw;height:30px">
+	   	  	 			<option>请选择要显示的网站</option>
+	   	  	 			<option>111</option>
+	   	  	 			<option>111</option>
+	   	  	 			<option>111</option>
+	   	  	 		</select>
+   	  	 		</div>
+	   	  	 	<div class="SQL4_table_show" style="width:75vw;margin:0 5vw;">
+	   	  	 		<table class="table table-bordered">
+					  <caption style="text-align:center;font-size:20px;margin:20px 0">已查询网站链接表</caption>
+					  <thead>
+					    <tr>
+					      <th>原始链接</th>
+					      <th>访问链接</th>
+					      <th>状态码</th>
+					      <th>传输方式</th>
+					      <th>是否存在漏洞</th>
+					      <th>操作</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <tr>
+					      <td>bysj/index/index2/index</td>
+					      <td>http://127.0.0.1/bysj/index/index2/index</td>
+					      <td>200</td>
+					      <td>text/html</td>
+					      <td>no</td>
+					      <td>手动注入</td>
+					    </tr>
+					  </tbody>
+					</table>
+				</div>
    	  	 	</div> 	
    	  	 	<!-- SQL自动注入模块 -->  	
-   	  	 	<div class="m_right main_one" id="SQL5_show">
-   	  	 		<table class="table table-bordered">
-				  <caption>边框表格布局</caption>
-				  <thead>
-				    <tr>
-				      <th>名称</th>
-				      <th>城市</th>
-				      <th>邮编</th>
-				    </tr>
-				  </thead>
-				  <tbody>
-				    <tr>
-				      <td>Tanmay</td>
-				      <td>Bangalore</td>
-				      <td>560001</td>
-				    </tr>
-				    <tr>
-				      <td>Sachin</td>
-				      <td>Mumbai</td>
-				      <td>400003</td>
-				    </tr>
-				    <tr>
-				      <td>Uma</td>
-				      <td>Pune</td>
-				      <td>411027</td>
-				    </tr>
-				  </tbody>
-				</table>
+   	  	 	<div class="m_right main_one" id="SQL5_show" style="display:none">
+   	  	 		<div style="margin:10px 5vw">
+   	  	 			请选择已爬取的网站
+	   	  	 		<select style="width:20vw;height:30px">
+	   	  	 			<option>请选择要显示的网站</option>
+	   	  	 			<option>111</option>
+	   	  	 			<option>111</option>
+	   	  	 			<option>111</option>
+	   	  	 		</select>
+   	  	 		</div>
+	   	  	 	<div class="SQL4_table_show" style="width:75vw;margin:0 5vw;">
+	   	  	 		<table class="table table-bordered">
+					  <caption style="text-align:center;font-size:20px;margin:20px 0">已查询网站链接表</caption>
+					  <thead>
+					    <tr>
+					      <th>原始链接</th>
+					      <th>访问链接</th>
+					      <th>状态码</th>
+					      <th>传输方式</th>
+					      <th>是否存在漏洞</th>
+					      <th>操作</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <tr>
+					      <td>bysj/index/index2/index</td>
+					      <td>http://127.0.0.1/bysj/index/index2/index</td>
+					      <td>200</td>
+					      <td>text/html</td>
+					      <td>no</td>
+					      <td>自动注入</td>
+					    </tr>
+					  </tbody>
+					</table>									
+				</div>
+				<div class="SQL3_show_log" id="log_SQL5_show">
+					<h3>
+						<div style="width:50vw;" class="log_title">网址</div>
+						<div style="width:20vw;" class="log_title">状态码</div>
+					</h3>
+					<div id="get_SQLInt_has_log">
+					</div>
+				</div>
    	  	 	</div> 	
    	  	 	<!-- SQL盲注模块 -->   	
    	  	 	<div class="m_right main_one" id="SQL6_show">
@@ -295,6 +493,8 @@
    	  </div>
       <script src="https://code.jquery.com/jquery.js"></script>
       <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <script src="https://code.jquery.com/jquery.js"></script>
+      <script src="/bysj__PUBLIC__/js/SQL3.js"></script>
 	  <script>
 	  	$(document).ready(function(){
 	  		//左侧选中效果
@@ -303,7 +503,12 @@
 	  			$('.left_botton').removeClass('do_get');
 	  			$(this).addClass('do_get');
 	  			$('.m_right').hide();
+	  			//alert($(this).attr('attr'));
 	  			$('#' + $(this).attr('attr') + '_show').show();
+	  			//找寻已经查询到的信息
+	  			if($(this).attr('attr') == 'SQL3'){
+	  				get_has_get_admin_url();
+	  			}
 	  		});
 	  		//退出登陆
 	  		$("#layout").click(function(){
@@ -317,6 +522,47 @@
 	  		});
 	  		//首页轮播
 	  		setInterval('img_display()',3000);
+	  		//点击首页左侧显示效果
+	  		$('.top>.top_left').click(function(){
+	  			$('.left_botton').removeClass('do_get');
+	  			$('.m_right').hide();
+	  			$('#SQL0_show').show();
+	  		})
+  			//第一部分  默认模块
+	  		$('.control_one').mouseover(function(){
+	  			$('.control_one').removeClass('have_color');
+	  			$(this).addClass('have_color');
+	  		});
+	  		$('.control_one').click(function(){
+	  			var attr = $(this).attr('attr');
+	  			//alert(attr);
+	  			$('.' + attr).trigger('click');
+	  		});
+	  		//第二部分 漏洞扫描模块
+	  		$('#do_get_base_url').click(function(){
+  				var url = $('#get_base_url').val();
+  				if(url == ''){
+  					alert('链接不能为空');
+  					return false;
+  				}
+  				var reg=/(http|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&:/~\+#]*[\w\-\@?^=%&/~\+#])?/;
+  				if(!reg.test(url)){
+  					alert('链接格式不正确，请重新输入');
+  					return false;
+  				}
+	  			$.ajax({
+	  				url:"/bysj/index/index2/get_base_url",
+	  				type:"POST",
+	  				data:{
+	  					'url':url
+	  				},
+	  				success:function(res){
+	  					alert('请输入正确的链接');
+	  				}
+	  			});
+	  		});	  		
+	  		//第四部分下拉菜单
+	  		 $(".dropdown-toggle").dropdown('toggle');
 	  	});
 	  	var display_time = 1;
 	  	function img_display(){
@@ -328,7 +574,7 @@
 	  			$('.main_default>img:first-child').css('display','block').attr('attr','show');
 	  			display_time = 1;
 	  		}	  		
-	  	}
+	  	}	  
 	  </script>
    </body>
 </html>

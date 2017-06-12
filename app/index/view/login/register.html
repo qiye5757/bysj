@@ -44,8 +44,9 @@
 		      <script>
 		      	$(document).ready(function(){
 		      		$('[name = "username"]').blur(function(){
-		      			var username = $('[name = "username"]').val();
+		      			var username = $('[name = "username"]').val();		      			
 		      			if(username != ''){
+		      				//alert(username);
 		      				$.ajax({
 				  				url:"/bysj/index/login/isHasUser",
 				  				type:"POST",
@@ -53,7 +54,11 @@
 				  					'username':username
 				  				}),
 				  				success:function(res){
-				  					alert(1);
+				  					//alert(JSON.stringify(res));
+				  					$('[name = "username"]').attr('attr',res);
+				  					if(res == true){
+				  						alert('用户名已存在');
+				  					}				  					
 				  				}
 				  			})
 		      			}
@@ -68,6 +73,10 @@
 		      				alert('用户名不能为空');
 		      				return false;
 		      			}
+		      			if(username.length<6 || username.length>18){
+		      				alert('用户名必须为6到18为数字与字母');
+		      				return false;
+		      			}
 		      			//alert($('[name = "username"]').attr('attr'));
 		      			if($('[name = "username"]').attr('attr') == 'true'){
 		      				alert('用户名已存在');
@@ -75,6 +84,10 @@
 		      			}
 		      			if(password == ''){
 		      				alert('密码不能为空');
+		      				return false;
+		      			}
+		      			if(password.length<6 || password.length>18){
+		      				alert('密码必须为6到18为数字与字母');
 		      				return false;
 		      			}
 		      			if(telephone == ''){
@@ -98,10 +111,16 @@
 			  					'username':username,
 			  					"password":password,
 			  					'telephone':telephone,
-			  					'code':code
+			  					'coder':code
 			  				}),
 			  				success:function(res){
-			  					alert(JSON.stringify(res));
+			  					//alert(JSON.stringify(res));
+			  					if(res == -1){
+			  						alert('验证码输入错误');
+			  						return false;
+			  					}else{
+			  						window.location.href="/bysj/index/login/login";
+			  					}
 			  				}
 			  			})
 		      		})
